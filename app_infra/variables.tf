@@ -1,6 +1,5 @@
 variable "vm_size" {
   type = number
-  default = 2
 }
 
 variable "vpc_cidr" {
