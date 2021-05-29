@@ -7,7 +7,7 @@ resource "aws_subnet" "rds_subnet" {
 }
 
 resource "aws_db_subnet_group" "rds_subnet_group" {
-  name        = "db-subnet-group"
+  name        = "${var.env_name}-db-subnet-group"
   subnet_ids  = [for sn in aws_subnet.rds_subnet : "${sn.id}"]
 }
 resource "aws_security_group" "rds_security_group" {
@@ -30,7 +30,7 @@ resource "aws_security_group" "rds_security_group" {
 }
 
 resource "aws_db_instance" "rds_database" {
-  identifier                = "projectf6-rds"
+  identifier                = "${var.env_name}-rds"
   allocated_storage         = 5
   engine                    = "mysql"
   engine_version            = "8.0.23"
@@ -42,4 +42,7 @@ resource "aws_db_instance" "rds_database" {
   vpc_security_group_ids    = ["${aws_security_group.rds_security_group.id}"]
   skip_final_snapshot       = true
   final_snapshot_identifier = "Ignore"
+  tags = {
+    "Name" = "${var.env_name}"
+  }
 }

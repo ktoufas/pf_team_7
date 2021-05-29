@@ -39,4 +39,7 @@ resource "aws_instance" "app_servers" {
   subnet_id = "${aws_subnet.public_subnet[count.index % 2].id}"
   associate_public_ip_address = true
 	user_data = "${file("install_httpd.sh")}"
+    tags = {
+    "Name" = "${var.env_name}"
+  }
 }

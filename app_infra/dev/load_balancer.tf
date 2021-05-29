@@ -22,13 +22,16 @@ resource "aws_security_group" "alb_sec_group" {
 
 # Create a new load balancer
 resource "aws_alb" "app_alb" {
-  name = "app-alb"
+  name = "${var.env_name}-app-alb"
   security_groups = [aws_security_group.alb_sec_group.id]
   subnets         = ["${aws_subnet.public_subnet[0].id}","${aws_subnet.public_subnet[1].id}"]
+  tags = {
+    Environment = "${var.env_name}"
+  }
 }
 
 resource "aws_alb_target_group" "alb_target_group" {
-  name     = "alb-target-group"
+  name     = "${var.env_name}-alb-target-group"
   port     = 80
   protocol = "HTTP"
   vpc_id   = "${aws_vpc.app_vpc.id}"

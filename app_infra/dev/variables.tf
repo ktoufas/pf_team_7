@@ -26,3 +26,7 @@ variable "DB_PASSWORD" {
 variable "DB_DBNAME" {
   type = string
 }
+
+variable "env_name" {
+  type = string
+}
