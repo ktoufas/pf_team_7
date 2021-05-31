@@ -3,11 +3,11 @@ variable "vm_size" {
 }
 
 variable "vpc_cidr" {
-  default = "10.20.0.0/16"
+  default = "10.30.0.0/16"
 }
 
 variable "subnet_cidr" {
-    default = "10.20.1.0/24"
+    default = "10.30.1.0/24"
 }
 
 variable "avail_zones" {
