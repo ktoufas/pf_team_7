@@ -20,6 +20,7 @@ sudo /usr/libexec/iptables/iptables.init save #SAVE REDIRECTION#
 
 #Install docker
 yum install -y docker
+sudo systemctl start docker
 
 #Install ansible
 sudo amazon-linux-extras install -y epel
