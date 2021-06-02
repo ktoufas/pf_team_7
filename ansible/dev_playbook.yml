@@ -1,0 +1,44 @@
+---
+- name: Setup VMs
+  hosts: all
+  become: true
+  vars_files:
+    - docker_config.yml
+
+  tasks:
+    - name: Install docker
+      yum:
+        name: docker
+        state: latest
+  
+    - name: Install pip
+      yum:
+        name: pip
+        state: latest
+
+    - name: Enable docker
+      service:
+        name: docker
+        state: started
+    
+    - name: Install docker sdk for python
+      pip:
+        name: docker-py
+        state: latest
+    
+    - name: Login to private registry
+      docker_login:
+        username: "{{ docker_username }}"
+        password: "{{ docker_access_key }}"
+      register: login_results
+
+    - name: Deploy app
+      docker_container:
+        name: web_hello_world
+        image: tutum/hello-world
+        ports:
+          - 80:80
+
+    - name: print info
+      debug:
+        var: login_results

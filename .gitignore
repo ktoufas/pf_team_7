@@ -2,6 +2,6 @@
 /cicd_infra/.terraform/
 /app_infra/*/*.tfvars
 /cicd_infra/*.tfvars
-/ansible
-!/ansible/dev_playbook.yml
+ansible/*
+!ansible/dev_playbook.yml
 
