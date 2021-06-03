@@ -77,7 +77,7 @@ resource "aws_security_group" "civm_sec_group" {
 #########################################
 resource "aws_instance" "civm" {
   ami = data.aws_ami.linux_vm.id
-  instance_type = "t2.micro"
+  instance_type = "t2.xlarge"
   key_name = "pf6-keypair"
 	vpc_security_group_ids = ["${aws_security_group.civm_sec_group.id}"]
   subnet_id = aws_subnet.civm_subnet.id
