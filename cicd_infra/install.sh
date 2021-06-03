@@ -11,6 +11,7 @@ sudo yum upgrade -y
 sudo yum install java-1.8.0 jenkins maven -y
 sudo systemctl daemon-reload
 sudo systemctl start jenkins
+sudo systemctl enable jenkins
 
 #Configure system to redirect port 80 to jenkins used port 8080
 sudo yum install -y iptables-services
@@ -21,6 +22,10 @@ sudo /usr/libexec/iptables/iptables.init save #SAVE REDIRECTION#
 #Install docker
 yum install -y docker
 sudo systemctl start docker
+sudo systemctl start containerd
+sudo systemctl enable docker
+sudo systemctl enable containerd
+
 
 #Install ansible
 sudo amazon-linux-extras install -y epel
