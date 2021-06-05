@@ -10,8 +10,6 @@ sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
 sudo yum upgrade -y
 sudo yum install java-1.8.0 jenkins maven -y
 sudo systemctl daemon-reload
-sudo systemctl start jenkins
-sudo systemctl enable jenkins
 
 #Configure system to redirect port 80 to jenkins used port 8080
 sudo yum install -y iptables-services
@@ -26,6 +24,9 @@ sudo systemctl start containerd
 sudo systemctl enable docker
 sudo systemctl enable containerd
 
+#Add Jenkins user to docker group
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
 
 #Install ansible
 sudo amazon-linux-extras install -y epel
