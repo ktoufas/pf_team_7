@@ -34,11 +34,10 @@
 
     - name: Deploy app
       docker_container:
-        name: web_hello_world
-        image: tutum/hello-world
+        name: app_container
+        image: ktoufas/to_do_app:{{ version }}
+        state: started
+        recreate: yes
+        detach: yes
         ports:
-          - 80:80
-
-    - name: print info
-      debug:
-        var: login_results
+          - 80:8080
