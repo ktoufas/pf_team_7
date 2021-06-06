@@ -1,6 +1,7 @@
 ---
 - name: Setup VMs
   hosts: all
+  serial: 40%
   become: true
   vars_files:
     - docker_config.yml
