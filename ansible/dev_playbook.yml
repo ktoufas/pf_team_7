@@ -38,6 +38,7 @@
         name: app_container
         image: ktoufas/to_do_app:{{ version }}
         state: started
+        restart_policy: on-failure
         recreate: yes
         detach: yes
         ports:
